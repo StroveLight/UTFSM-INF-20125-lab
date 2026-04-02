@@ -1,3 +1,6 @@
 *.zip
 */main
-*/.vscode
+*/.vscode/*
+*.txt
+*/main.c
+e1/*

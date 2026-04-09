@@ -30,11 +30,11 @@ int main() {
 ### Operadores de bits
 | | nombre | ejemplo | en bytes |
 |-|-|-|-|
-| `&` | AND | `2 & 3` es `2` |  `0b10 & 0b11` es `0b00`  |
-| `\|` | OR | `2 \| 1` es `3`|  `0b10 \| 0b11` es `0b00` |
-| `^` | XOR | `3 ^ 1` es `1` |  `0b11 ^ 0b01` es `0b01`  |
+| `&` | AND | `2 & 3` es `2` |  `0b10 & 0b11` es `0b10`  |
+| `\|` | OR | `2 \| 1` es `3`|  `0b10 \| 0b11` es `0b11` |
+| `^` | XOR | `3 ^ 1` es `1` |  `0b11 ^ 0b01` es `0b10`  |
 | `<<` | shift left | `2 << 1` es `4` |  `0b010 << 1` es `0b100`  |
-| `>>` | shift left | `2 >> 1` es `1` |  `0b010 >> 1` es `0b001`  |
+| `>>` | shift right | `2 >> 1` es `1` |  `0b010 >> 1` es `0b001`  |
 | `~ ` | Negación | `~0` es `-1` |  `~ 0b00000000` es `0b11111111`  |
 * `<< 1` equivale a multiplicar por dos
 * `>> 1` equivale a división entera por dos.
@@ -53,22 +53,24 @@ Se puede usar el printf para imprimir un valor, pero también para imprimir su u
 
 int main() {
     char* hola = "hola";
-    int cinco = 70;
-    printf("texto: %s\n> memoria: %p\n", hola, hola);
-    printf("> largo: %li\n> espacio_en_memoria: %ld\n", strlen(hola), strlen(hola)*sizeof(&hola));
-    printf("número: %i\n> memoria: %p\n", cinco, &cinco);
-    printf("> letra: %c\n> espacio_en_memoria: %ld\n", cinco, sizeof(cinco));
+    int setenta = 70;
+    printf("texto: %s\n> memoria: %p\n> 1ra letra: %c\n", hola, hola, *hola);
+    printf("> largo: %li\n> espacio_en_memoria: %ld\n", strlen(hola),
+            strlen(hola)*sizeof(*hola));
+
+    printf("número: %i\n> memoria: %p\n", setenta, &setenta);
+    printf("> letra: %c\n> espacio_en_memoria: %ld\n", setenta, sizeof(setenta));
     return 0;
 }
 ```
 
-El uso de `strlen(hola)*sizeof(&hola)` se usa para calcular el tamaño del `char*`.
+El uso de `strlen(hola)*sizeof(*hola)` se usa para calcular el tamaño del `char*`.
 * `strlen(hola)` retorna el largo del string.
-* `sizeof(&hola)` retorna el espacio que usa el primer carácter.
+* `sizeof(*hola)` retorna el espacio que usa el primer carácter.
 
 ## Uso de assert
 
-Assert nos permite asegurar (assert) que lo que estamos haciendo nunca ocurrirá, en caso de que ocurra, el programa falla y reporta donde falló el assert.
+Assert nos permite asegurar (assert) que lo que estamos haciendo siempre será verdad, en caso de que no lo sea, el programa falla y reporta donde falló el assert.
 
 ```c
 #include <assert.h>

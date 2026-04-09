@@ -35,12 +35,11 @@ int main(int argc, char *argv[]) {
         printf("parámetros insuficientes. Formato: <operación> <número1> <número2>\n");
         exit(-1);
     }
-    int cantidad = atoi(argv[2]), cantidad2 = atoi(argv[2]);
+    int cantidad = atoi(argv[2]), cantidad2 = atoi(argv[3]);
     char operacion = argv[1][0];
     switch (operacion)
     {
     case '+':
-        break;
     case 's':
         printf("%d\n", cantidad + cantidad2);
         break;

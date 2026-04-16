@@ -1,5 +1,11 @@
 # Depuración Ⅱ: gdb
 
+## Float
+Al poseer memoria finita:
+* hay un rango fijo por el cual sumar uno al valor cambia efectivamente el valor.
+* los valores que puede tomar son finitos, por lo que el `==` tiende a no capturar los valores que debiesen ser el mismo
+
+
 ## Hexadecimales
 
 También llamados como `base 16`, representan números que van del `0` a la `f`. Debido a que los computadores funcionan con bits (base 2), es mas cómodo mostrar direcciones de memoria en base 16 que en base 10. Un número base 16 se encuentra en código como un número que empieza con `0x`, por ejemplo `0xff`.
@@ -46,6 +52,8 @@ Se requiere del uso de una extensión: https://marketplace.visualstudio.com/item
 
 ```c
 #include <stdio.h>
+#include <assert.h>
+#include <math.h>
 
 int main(){
     float j = 0;
@@ -53,7 +61,7 @@ int main(){
         j += 1.0 / (float)i;
     printf("%f\n", j);
     printf("%x\n", j);
-		assert j
+    assert(j != INFINITY);
     return 0;
 }
 ```
@@ -72,6 +80,25 @@ int main(){
     int a = 1048576;
     int b = 2;
     int j = dividir(a, b);
+    return 0;
+}
+```
+
+
+### Código de ejemplo 3
+loop infinito
+```c
+#include <stdio.h>
+
+int main(){
+    float j = 0;
+    float maximo = 1e8;
+    scanf("%f", &j);
+    
+    if (j <= 0.00100001 && 0.00099991 <= j)
+        printf("ok\n");
+    while (j < maximo)
+        j += 4.0;
     return 0;
 }
 ```

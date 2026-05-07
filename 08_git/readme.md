@@ -24,6 +24,8 @@ repositorio remoto: El lugar en el que se sirven los cambios, por ejemplo, `gith
 | `commit -m <mensaje>` | Le indica a git que los cambios locales considerados los agrupe con cierto mensaje	|
 | `push` | Envia los cambios del repositiorio local a los que se le ha hecho commit al repositorio remoto	|
 | `status` | Indica el estado de los arhcivos locales |
+| `stash` | (Usar con cuidado) Guarda los cambios locales temporalmente, y deja el repositorio sin los cambios. Hacer dos veces seguidas `git stash` puede hacer que los primeros cambios se pierdan |
+| `stash pop` | (Usar con cuidado) Aplica los cambios locales guardados en el uso de `git stash` en el repositorio local |
 
 Hay operaciones más complejas como el uso de ramas, pero estas se escapan de lo abordable en el módulo.
 

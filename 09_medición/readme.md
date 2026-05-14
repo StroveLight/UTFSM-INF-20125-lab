@@ -47,7 +47,7 @@ Uso:
 int main(){
 	struct timespec tiempo;
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tiempo);
-    printf("tiempo: %ld\n", tiempo.tv_sec);
+    printf("tiempo: %ld\n", tiempo.tv_nsec);
 }
 ```
 

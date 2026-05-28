@@ -8,7 +8,6 @@
 struct ErrorParDominio : public std::exception {
 private:
     std::string mensaje;
-
 public:
     ErrorParDominio(int p1, int p2) {
         mensaje = "Por lo menos una de las siguientes ids no está en los datos:  " 
@@ -30,6 +29,12 @@ class BDD {
     Pair* relaciones;
     int size_personas = 0;
     int size_relaciones = 0;
+    bool en_transaccion = false;
+    int* copia_personas;
+    Pair* copia_relaciones;
+    int copia_size_personas;
+    int copia_size_relaciones;
+
 private:
     void mas_personas(){
         this->personas = (int *)realloc(this->personas, ++size_personas * sizeof(int));
@@ -37,10 +42,39 @@ private:
     void mas_relaciones(){
         this->relaciones = (Pair *)realloc(this->relaciones, ++size_relaciones * sizeof(Pair));
     }
+    void mas_personas(int size){
+        this->copia_personas = (int *)realloc(this->copia_personas, size * sizeof(int));
+        this->copia_size_personas = size;
+    }
+    void mas_relaciones(int size){
+        this->copia_relaciones = (Pair *)realloc(this->copia_relaciones, size * sizeof(Pair));
+        this->copia_size_relaciones = size;
+    }
 public:
     BDD(){ 
        this->personas = (int *)calloc(1, sizeof(int)); 
-       this->relaciones = (Pair *)calloc(1, sizeof(Pair)); 
+       this->relaciones = (Pair *)calloc(1, sizeof(Pair));
+       this->copia_personas = (int *)calloc(1, sizeof(int)); 
+       this->copia_relaciones = (Pair *)calloc(1, sizeof(Pair)); 
+    }
+    void iniciar_transaccion(){
+        this->mas_personas(this->size_personas);
+        this->mas_relaciones(this->size_relaciones);
+        for (int i=0; i < this->size_personas; i++)
+            this->copia_personas[i] = this->personas[i];
+        for (int i=0; i < this->size_relaciones; i++)
+            this->copia_relaciones[i] = this->relaciones[i];
+        this->en_transaccion = true;
+    }
+    void revertir_transaccion(){
+        int *temp = this->personas;
+        this->personas = this->copia_personas;
+        this->copia_personas = temp;
+        Pair *temp2 = this->relaciones;
+        this->relaciones = this->copia_relaciones;
+        this->copia_relaciones = temp2;
+        this->size_personas = this->copia_size_personas;
+        this->size_relaciones = this->copia_size_relaciones;
     }
     void agregar_persona(int persona){
         if (this->existe_persona(persona))
@@ -62,27 +96,46 @@ public:
             if (persona == this->personas[i]) return true;
         return false;
     }
-    ~BDD() { free(personas), free(relaciones); }
+    void mostrar_datos(){
+        std::cout << "Personas" << std::endl;
+        for (int i=0; i < this->size_personas - 1; i++)
+            std::cout << this->personas[i] << ", ";
+        if (this->size_personas != 0)
+            std::cout << this->personas[this->size_personas - 1] << std::endl;
+        std::cout << "Relaciones" << std::endl;
+        for (int i=0; i < this->size_relaciones; i++)
+            std::cout << '(' << this->relaciones[i].x << ", " << this->relaciones[i].y << ')' << std::endl;
+    }
+    ~BDD() { 
+        free(personas);
+        free(relaciones); 
+        free(copia_personas);
+        free(copia_relaciones); 
+    }
 };
 
 
 int main(){
+    BDD datos = BDD();
+    datos.agregar_persona(1);
+    datos.agregar_persona(2);
+    datos.agregar_relacion(1, 2);
+    datos.iniciar_transaccion();
     try{
-        BDD datos = BDD();
-        datos.agregar_persona(1);
-        datos.agregar_persona(2);
-        datos.agregar_persona(2);
-        datos.agregar_relacion(1, 2);
+        datos.agregar_persona(3);
+        datos.agregar_persona(4);
         datos.agregar_relacion(3, 2);
+        datos.agregar_persona(2);
     }
     catch (ErrorParDominio &error){
         std::cout << error.what() << std::endl;
-        return -2;
+        datos.revertir_transaccion();
     }
     catch (std::invalid_argument & error){
         std::cout << error.what() << std::endl;
-        return -1;
+        datos.revertir_transaccion();
     }
+    datos.mostrar_datos();
 
     return 0;
 }

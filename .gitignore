@@ -8,3 +8,4 @@ e1/*
 e2/*
 */massif*
 */callgrind*
+*.Identifier

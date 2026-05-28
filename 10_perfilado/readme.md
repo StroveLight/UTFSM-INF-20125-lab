@@ -20,6 +20,7 @@ Ejemplo de tabla:
 
 Significado columnas:
 |nombre | significado |
+|-|-|
 | `time` | Momento de la snapshot, usualmente es tiempo `(i)` |
 | `total` | Uso de memoria total en ese momento |
 | `useful-heap` | Parte del heap que se ha usado hasta el momento |
@@ -28,6 +29,18 @@ Significado columnas:
 
 Para programas cortos se recomienda usar `--time-unit=B` al usar massif para así usar bytes en vez de tiempo.
 
+
+# perf
+`perf stat` sirve para mostrar información de un programa, usualmente se envían mas valores para poseer mayor información de la forma:
+`perf stat -e instructions,cycles,cache-references,cache-misses`
+
+Donde:
+| nombre | significado |
+|-|-|
+| instructions | Instrucciones realizadas por el computador |
+| cycles 	|  Ciclos de CPU usados |
+| cache-references | Veces que se usó la caché |
+| cache-misses | Veces que no se encontró algo en la caché |
 
 ## otros
 También existe `callgrind` para ver uso mediante llamadas de funciones. Y `perf` que permite medir el performance de un programa.

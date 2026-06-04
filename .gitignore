@@ -9,3 +9,6 @@ e2/*
 */massif*
 */callgrind*
 *.Identifier
+*/WSL2-Linux-Kernel*
+*.o
+*.so

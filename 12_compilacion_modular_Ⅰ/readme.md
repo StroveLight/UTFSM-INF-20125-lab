@@ -63,6 +63,11 @@ Para esto usaremos `ar` (archivador), que utiliza las siguientes opciones
 |v| Modo verboso |
 |d| eliminar módulo especificado del archivo |
 
+Compilar el main en archivo.o
+```bash
+gcc -g -I./lugar/casona -c main.c
+```
+
 Uso con edificio
 ```bash
 ar rcs lib_lugar.a int_a_char.o edificio.o

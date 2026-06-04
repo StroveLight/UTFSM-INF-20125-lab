@@ -12,3 +12,4 @@ e2/*
 */WSL2-Linux-Kernel*
 *.o
 *.so
+*lib_*

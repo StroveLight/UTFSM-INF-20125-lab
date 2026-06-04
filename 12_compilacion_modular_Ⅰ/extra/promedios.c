@@ -21,5 +21,5 @@ float sin_extremos(float* numeros, int cantidad){
         if (max < numeros[i])
             max = numeros[i];
     }
-    return total / (float)cantidad;
+    return (total - max - min) / ((float)cantidad - 2);
 }

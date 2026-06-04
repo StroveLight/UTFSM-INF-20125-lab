@@ -6,6 +6,7 @@
 */main.cpp
 e1/*
 e2/*
+e3/*
 */massif*
 */callgrind*
 *.Identifier
@@ -13,3 +14,4 @@ e2/*
 *.o
 *.so
 *lib_*
+

@@ -51,7 +51,7 @@ Nota: el `-c` se usa para saltar el paso de enlazar el archivo, lo que permite c
 rm ./*.o
 ```
 
-## Libraría Estática
+## Librería Estática
 
 Para esto usaremos `ar` (archivador), que utiliza las siguientes opciones
 | opcion | descripción |
@@ -86,7 +86,7 @@ gcc -o lib_lugar main.o -L. -l:lib_lugar.a
 rm ./lib_*
 ```
 
-## Compilación Dinámica
+## Librería Dinámica
 
 Permite en ejecución resolver lo que se necesita.
 
@@ -109,6 +109,7 @@ Descripción:
 
 Usar edificio en vez de casona:
 ```bash
+gcc -g -fPIC -c ./lugar/edificio/lugar.c -o edificio.o
 gcc -shared -o lib_lugar.so edificio.o int_a_char.o
 ```
 

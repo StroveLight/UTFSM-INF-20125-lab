@@ -39,7 +39,7 @@ gcc -g -I./lugar/casona -I./utils -o main main.c casona.o int_a_char.o
 Ejemplo Edificio:
 ```bash
 gcc -g -c ./utils/int_a_char.c
-gcc -g -I./persona -c -c ./lugar/edificio/lugar.c -o edificio.o
+gcc -g -I./persona -c ./lugar/edificio/lugar.c -o edificio.o
 gcc -g -I./lugar/edificio -o main main.c int_a_char.o edificio.o
 ```
 

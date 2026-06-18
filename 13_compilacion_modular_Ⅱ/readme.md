@@ -61,15 +61,14 @@ COMMON_COMMAND = -I./utils main.c ./utils/int_a_char.c
 
 all: casona edificio
 
-edificio:
+edificio: lugar/edificio/lugar.c main.c utils/int_a_char.c
 	gcc $(CFLAGS) -I./lugar/edificio -o edificio ./lugar/edificio/lugar.c $(COMMON_COMMAND)
 
-casona:
+casona: lugar/casona/lugar.c main.c utils/int_a_char.c
 	gcc $(CFLAGS) -I./lugar/casona -o casona ./lugar/casona/lugar.c $(COMMON_COMMAND)
 
 clean:
 	rm ./casona ./edificio
-
 ```
 
 ### Argumentos `make`

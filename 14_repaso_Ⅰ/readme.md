@@ -26,14 +26,14 @@ Es común en `C` el pasar un puntero a una función, pero en `C++` se puede pasa
 
 ## Problema de Igualar valores
 
-Dado dos colecciones de valores $N$ y $K$ con $|K|>|N|$, deberás indicar si existe una colección $S$ de elementos de $K$ con $|S| = |N|$, tal que, dado $S=s_1, ..., s_{|N|}$ y  $N=n_1, ..., n_{|N|}$, entonces lo siguiente es verdad: 
+Dado dos colecciones de valores $N$ y $K$ con $|K|\geq|N|$, deberás indicar si existe una colección $S$ de elementos de $K$ con $|S| = |N|$, tal que, dado $S=s_1, ..., s_{|N|}$ y  $N=n_1, ..., n_{|N|}$, entonces lo siguiente es verdad: 
 $$s_1 + n_1 = s_2 + n_2 = ... = s_{|N|} + n_{|N|}$$
 
 El valor que debe ser impreso en consola es el primer índice de $K$ tal que satsfaga el problema. Si no hay valor válido, se imprime $-1$.
 
 #### Restricciones:
-* $0<n_i<100$
-* $0<k_i<100$
+* $0\leq n_i<100$
+* $0\leq k_i<100$
 * $2\leq|N|\leq|K|<10^4$
 
 #### Formato input
@@ -57,5 +57,26 @@ Output:
 ```
 2
 -1
+```
+
+#### Ejemplo 2
+Problema: cuantas veces está un valor de N en K. imprimir por cada posición $i$ de N cuantas veces está $n_i$ en K
+
+
+Input:
+```
+2
+2 4
+3 5
+1 4 2 3
+4 8
+1 4 6 4
+4 5 6 4 5 6 4 5
+```
+
+Output:
+```
+1 0
+0 3 2 3
 ```
 

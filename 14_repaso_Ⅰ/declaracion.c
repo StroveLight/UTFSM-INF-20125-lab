@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // declaración sin uso:
-// int a(int n);
+int a(int n);
 
 int b(int n){
     if (n < 10)

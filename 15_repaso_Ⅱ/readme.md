@@ -33,7 +33,7 @@ Se usa `<`:
 
 ## Problema de hoy
 ### máximo común divisor (gcd) en C++
-Antes tanto para el mínimo común múltiplo (`lcm`) como para el `gcd` se usaba `__gcd()` que estaba en el compilador de `GCC`, sin embargo, desde C++17, está tanto `gcd` como `lcm` en la librería `<numeric>`.
+Antes tanto para el mínimo común múltiplo (`lcm`) como para el `gcd` se usaba `__gcd()` que estaba en el compilador de `GCC`, sin embargo, desde C++17 (`-std=c++17`), está tanto `gcd` como `lcm` en la librería `<numeric>`.
 
 ## Problema: Sincronización de relojes
 Tres relojes se tardan distinto tiempo en marcar las 12 horas. El objetivo es calcular en qué momento los relojes vuelver a marcar la misma hora a las 12, asumiendo que parten marcando la misma hora a las 12.

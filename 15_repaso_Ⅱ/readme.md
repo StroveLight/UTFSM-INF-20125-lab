@@ -61,3 +61,10 @@ Por cada problema, cuántos dias pasarán hasta que los tres marquen la misma ho
 4
 3
 ```
+
+## Problema Propuesto
+Problema con 4 relojes en vez de 3:
+* Modificar el script del problema anterior para que los tests sean adecuados al problema, sin modificar lo que no es necesario modificar.
+* Modificar el código del problema anterior para trabajar con 4 relojes. Por problema, entregar el menor tiempo en el que 3 marquen la misma hora.
+
+Se comparará pasándole el output de lo creado por el script al código.
